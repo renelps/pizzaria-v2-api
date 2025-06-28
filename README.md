@@ -1,6 +1,6 @@
 # 🍕 Pizzaria API
 
-API desenvolvida para gerenciamento de uma pizzaria, incluindo autenticação de usuários, cadastro de produtos, categorias e controle completo de pedidos.
+API desenvolvida para gerenciamento de uma pizzaria, com autenticação de usuários, cadastro de categorias e produtos, controle completo de pedidos e envio de imagens.
 
 ## 🚀 Tecnologias Utilizadas
 
@@ -8,8 +8,8 @@ API desenvolvida para gerenciamento de uma pizzaria, incluindo autenticação de
 - **Express**
 - **TypeScript**
 - **Prisma ORM**
-- **SQLite** (ou substituível por PostgreSQL, MySQL, etc.)
-- **Multer** (para upload de imagens)
+- **PostgreSQL** (banco de dados principal)
+- **Multer** (upload de imagens)
 - **JWT** (autenticação)
 - **bcryptjs** (criptografia de senhas)
 
@@ -18,12 +18,12 @@ API desenvolvida para gerenciamento de uma pizzaria, incluindo autenticação de
 ## 📦 Funcionalidades
 
 - ✅ Cadastro e login de usuários
-- ✅ Criação de categorias
-- ✅ Cadastro de produtos com imagem
-- ✅ Criação e edição de pedidos
+- ✅ Criação e listagem de categorias
+- ✅ Cadastro e listagem de produtos (com imagem)
+- ✅ Criação e gerenciamento de pedidos
 - ✅ Adição e remoção de itens no pedido
-- ✅ Enviar e finalizar pedido
-- ✅ Listagem de pedidos em andamento e detalhes
+- ✅ Envio e finalização do pedido
+- ✅ Visualização de pedidos em andamento e detalhes
 
 ---
 
@@ -39,9 +39,8 @@ cd pizzaria-api
 # Instale as dependências
 npm install
 
-# Configure o .env com a URL do banco
-# Exemplo para SQLite:
-DATABASE_URL="file:./dev.db"
+# Configure o arquivo .env com sua URL do banco PostgreSQL
+DATABASE_URL="postgresql://usuario:senha@localhost:5432/nome_do_banco"
 
 # Rode as migrations do Prisma
 npx prisma migrate dev
@@ -54,7 +53,7 @@ npm run dev
 
 ## 🔒 Autenticação
 
-A API utiliza autenticação via **JWT**. Para acessar rotas protegidas, envie o token no header:
+A API utiliza autenticação via **JWT**. Para acessar rotas protegidas, envie o token no cabeçalho:
 
 ```http
 Authorization: Bearer seu_token
@@ -64,16 +63,18 @@ Authorization: Bearer seu_token
 
 ## 🖼️ Upload de imagem
 
-Para cadastrar um produto com imagem, utilize `multipart/form-data` e envie:
+Para cadastrar um produto com imagem:
 
-- Campo `file`: a imagem (.png, .jpg, etc.)
-- Demais campos: `name`, `price`, `category_id`, etc.
+- Utilize `multipart/form-data`
+- Envie:
+  - Campo `file`: imagem do produto (.jpg, .png, etc.)
+  - Campos adicionais: `name`, `price`, `category_id`
 
 ---
 
-## 🧪 Teste com Insomnia ou Postman
+## 🧪 Testes com Insomnia/Postman
 
-Use ferramentas como [Insomnia](https://insomnia.rest/) ou [Postman](https://www.postman.com/) para testar as rotas da API.
+Use o [Insomnia](https://insomnia.rest/) ou [Postman](https://www.postman.com/) para testar as rotas HTTP da API com headers, autenticação e corpo de requisições.
 
 ---
 
@@ -81,13 +82,29 @@ Use ferramentas como [Insomnia](https://insomnia.rest/) ou [Postman](https://www
 
 ```bash
 src/
-├── config/
-├── controllers/
-├── services/
-├── routes.ts
-├── server.ts
+├── config/               # Configurações (ex: multer)
+├── controllers/          # Controllers divididos por domínio
+│   ├── category/
+│   ├── order/
+│   ├── product/
+│   └── user/
+├── services/             # Lógica de negócio (services)
+├── routes.ts             # Rotas da aplicação
+├── server.ts             # Entrada do servidor
 prisma/
-└── schema.prisma
+└── schema.prisma         # Esquema do banco de dados
+```
+
+---
+
+## 🛠️ Comandos úteis
+
+```bash
+# Criar nova migration
+npx prisma migrate dev --name nome_migration
+
+# Visualizar modelo do banco
+npx prisma studio
 ```
 
 ---
