@@ -26,7 +26,7 @@ router.post("/users", new CreateUserController().handle);
 
 router.post("/session", new AuthUserController().handle);
 
-router.get("/userinfo", isAuthencated,  new DetailUserController().handle);
+router.get("/me", isAuthencated,  new DetailUserController().handle);
 
 
 router.post("/category", isAuthencated, new CreateCategoryController().handle);
@@ -34,7 +34,7 @@ router.post("/category", isAuthencated, new CreateCategoryController().handle);
 router.get("/category", isAuthencated, new ListCategoryController().handle);
 
 
-router.post("/product", isAuthencated, upload.single('file'), new CreateProductController().handle);
+router.post("/product", isAuthencated, new CreateProductController().handle);
 
 router.get("/allcategory", isAuthencated, new ListByCategoryController().handle)
 export { router };
