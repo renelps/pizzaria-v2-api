@@ -30,4 +30,4 @@ app.use((err, req, res, next) => {
         message: 'internal error server'
     });
 });
-app.listen(process.env.PORT, () => console.log("Servidor Iniciado!!"));
+exports.default = app;
