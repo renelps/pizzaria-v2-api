@@ -22,7 +22,7 @@ class CreateProductController {
         return res.status(400).json({ error: "Error upload file" });
       }
 
-      const file: UploadedFile = req.files['file'];
+      const file = req.files['file'] as UploadedFile;
 
       const createProductService = new CreateProductService();
 
