@@ -20,7 +20,7 @@ import { FinishOrderController } from "./controllers/order/finishOrderController
 
 const router = Router();
 
-const upload = multer(uploadConfig.upload("./tmp"))
+//const upload = multer(uploadConfig.upload("./tmp"))
 
 router.post("/users", new CreateUserController().handle);
 
