@@ -30,4 +30,5 @@ app.use((err, req, res, next) => {
         message: 'internal error server'
     });
 });
-app.listen(process.env.PORT, () => console.log("Servidor Iniciado!!"));
+const port = process.env.PORT || 3333;
+app.listen(port, () => console.log(`Servidor rodando na porta ${port}`));

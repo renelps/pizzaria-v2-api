@@ -38,4 +38,5 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 
 
 
-app.listen(process.env.PORT, () => console.log("Servidor Iniciado!!"));
+const port = process.env.PORT || 3333;
+app.listen(port, () => console.log(`Servidor rodando na porta ${port}`));
