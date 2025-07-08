@@ -26,7 +26,7 @@ router.get("/me", isAuthencated_1.isAuthencated, new detailUserController_1.Deta
 router.post("/category", isAuthencated_1.isAuthencated, new createCategoryController_1.CreateCategoryController().handle);
 router.get("/category", isAuthencated_1.isAuthencated, new listCategoryController_1.ListCategoryController().handle);
 router.post("/product", isAuthencated_1.isAuthencated, new createProductController_1.CreateProductController().handle);
-router.get("/allcategory", isAuthencated_1.isAuthencated, new listByCategoryController_1.ListByCategoryController().handle);
+router.get("/category/product", isAuthencated_1.isAuthencated, new listByCategoryController_1.ListByCategoryController().handle);
 router.post("/order", isAuthencated_1.isAuthencated, new createOrderController_1.CreateOrderController().handle);
 router.delete("/order", isAuthencated_1.isAuthencated, new removeOrderController_1.RemoveOrderController().handle);
 router.post("/order/add", isAuthencated_1.isAuthencated, new addItemController_1.AddItemController().handle);
