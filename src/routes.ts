@@ -32,7 +32,7 @@ router.get("/category", isAuthencated, new ListCategoryController().handle);
 
 router.post("/product", isAuthencated, new CreateProductController().handle);
 
-router.get("/allcategory", isAuthencated, new ListByCategoryController().handle)
+router.get("/category/product", isAuthencated, new ListByCategoryController().handle)
 export { router };
 
 
