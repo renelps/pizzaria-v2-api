@@ -29,12 +29,9 @@ router.post("/category", isAuthencated, new CreateCategoryController().handle);
 
 router.get("/category", isAuthencated, new ListCategoryController().handle);
 
-
 router.post("/product", isAuthencated, new CreateProductController().handle);
 
 router.get("/category/product", isAuthencated, new ListByCategoryController().handle)
-export { router };
-
 
 router.post("/order", isAuthencated, new CreateOrderController().handle)
 
@@ -51,3 +48,5 @@ router.get("/orders", isAuthencated, new ListOrdersController().handle)
 router.get("/order/detail", isAuthencated, new DetailOrderController().handle)
 
 router.put("/order/finish", isAuthencated, new FinishOrderController().handle)
+
+export { router };
